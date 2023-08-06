@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button, Input, Stack } from '@mui/joy';
+import { SaveQuest } from '../services/fileService';
 
 const testobj = {
   name: 'kamp',
@@ -9,7 +10,8 @@ const testobj = {
 const SaveAndLoad = () => {
   const [loadedFile, setLoadedFile] = useState(null);
   const fileNameRef = useRef();
-  const uploadFileRef = useRef();
+  const loadQuestRef = useRef();
+  const loadGameRef = useRef();
 
   const handleClickedSave = () => {
     const inputValue = fileNameRef.current.childNodes[0].value;
@@ -18,53 +20,46 @@ const SaveAndLoad = () => {
       return;
     }
 
-    save(
+    SaveQuest(
       inputValue,
       testobj
     );
   };
 
-  const save = (fileName, fileContent) => {
-    const url = window.URL.createObjectURL(
-      new Blob([JSON.stringify(fileContent)])
-    );
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `${fileName}.qbf`);
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode.removeChild(link);
+  const handleLoadQuestClicked = () => {
+    loadQuestRef.current.click();
   };
 
-  const handleClickedLoad = () => {
-    uploadFileRef.current.click();
+  const handleLoadGameClicked = () => {
+    loadGameRef.current.click();
   };
 
-  const load = (e) => {
+  const loadFile = (loadEvent) => {
     const fileReader = new FileReader();
 
-    fileReader.readAsText(e.target.files[0], "UTC-8");
+    const loadFileEvent = loadEvent.target.files[0]
 
-    fileReader.onload = fileContent => {
-      const uploadedFile = JSON.parse(fileContent.target.result);
+    fileReader.readAsText(loadFileEvent, "UTC-8");
+
+    fileReader.onload = (loadedFile) => {
+      const loadedFileContent = JSON.parse(loadedFile.target.result);
 
       setLoadedFile({
-        content: uploadedFile,
-        name: e.target.files[0].name
+        content: loadedFileContent,
+        name: loadFileEvent.name
       });
-    }
-  }
+    };
+  };
 
   return (
     <Stack gap='20px'>
       <Stack direction='row' gap='10px'>
         <Input placeholder="Type name of file here..." ref={fileNameRef} />
         <Button onClick={handleClickedSave}>Save</Button>
-        <Button onClick={handleClickedLoad} variant='outlined'>Load</Button>
+        <Button onClick={handleLoadQuestClicked} variant='outlined'>Load quest</Button>
+        <Button onClick={handleLoadGameClicked} variant='outlined'>Load game</Button>
       </Stack>
 
-      <input type='file' style={{ display: 'none' }} ref={uploadFileRef} onChange={load} />
       {loadedFile &&
         <>
           <div>Loaded file:</div>
@@ -72,6 +67,19 @@ const SaveAndLoad = () => {
           <div>content: {JSON.stringify(loadedFile.content)}</div>
         </>
       }
+
+      <input type='file'
+        style={{ display: 'none' }}
+        ref={loadQuestRef}
+        onChange={loadFile}
+        accept='.qbq'
+      />
+      <input type='file'
+        style={{ display: 'none' }}
+        ref={loadGameRef}
+        onChange={loadFile}
+        accept='.qbg'
+      />
     </Stack>
   );
 };
