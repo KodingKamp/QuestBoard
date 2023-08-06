@@ -1,0 +1,13 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#root {
+  height: calc(100vh - 40px);
+  padding: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
