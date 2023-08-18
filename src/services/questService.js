@@ -25,7 +25,7 @@ export const createNewCampaign = () => {
  * @param {string} description The description of the note.
  * @returns A Note object.
  */
-const createNoteItem = (
+export const createNoteItem = (
   description,
 ) => {
   let now = new Date();
