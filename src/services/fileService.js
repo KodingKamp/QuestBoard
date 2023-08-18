@@ -12,7 +12,7 @@ const _saveFile = (fileName, fileContent) => {
   link.parentNode.removeChild(link);
 };
 
-export const SaveQuest = (name, content) => {
+export const saveCampaign = (name, content) => {
   // Validation
   if (!name) {
     return "A name is required to save the quest.";
@@ -30,7 +30,7 @@ export const SaveQuest = (name, content) => {
   return null;
 };
 
-export const SaveGame = (name, content) => {
+export const saveGame = (name, content) => {
   // Validation
   if (!name) {
     return "A name is required to save the game.";
@@ -40,4 +40,22 @@ export const SaveGame = (name, content) => {
     fileContent = JSON.stringify(content);
 
   _saveFile(fileName, fileContent);
+};
+
+export const loadFile = (file, setDataCallbackFunction) => {
+  const fileReader = new FileReader();
+
+    const loadFileEvent = file.target.files[0]
+    fileReader.readAsText(loadFileEvent, "UTC-8");
+
+    fileReader.onload = (event) => {
+      if (event.target) {
+        const loadedFileContent = JSON.parse(event.target.result);
+        
+        setDataCallbackFunction({
+          content: loadedFileContent,
+          name: loadFileEvent.name
+        });
+      }
+    };
 };
