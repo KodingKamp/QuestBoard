@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Box, Button, Stack } from '@mui/joy';
 import './LandingPage.scss';
 
@@ -5,12 +6,16 @@ const LandingPage = () => {
   return (
     <Box id='landing-page-component'>
       <Stack direction='row' gap='10px'>
-        <Button className='mode-button' component='a' href='/create'>
-          Creator Mode
-        </Button>
-        <Button className='mode-button' component='a' href='/game'>
-          Game Mode
-        </Button>
+        <Link to="/create" relative='path'>
+          <Button className='mode-button'>
+            Creator Mode
+          </Button>
+        </Link>
+        <Link to="/game" relative='path'>
+          <Button className='mode-button'>
+            Game Mode
+          </Button>
+        </Link>
       </Stack>
     </Box>
   );
