@@ -1,11 +1,5 @@
-import { Button, Input } from '@mui/joy';
-import './CreatorMode.scss';
 import SaveAndLoad from '../../POC/SaveAndLoad';
-
-const testobj = {
-  name: 'kamp',
-  id: '123789'
-};
+import './CreatorMode.scss';
 
 const CreatorMode = () => {
   return (
