@@ -1,7 +1,7 @@
 # React + Vite
 
 This project is powered by Vite.
-- To start up the project, run `npm run dev` in your terminal.
+- To serve the project, execute `npm start` in your terminal.
 
 Additional documentation for Vite can be found at the following links:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
