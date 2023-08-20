@@ -1,38 +1,67 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setCampaign } from '../../reducers/campaignReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoadedCampaign, setNewCampaign } from '../../reducers/campaignReducer';
 import { Button, Stack } from '@mui/joy';
 import { loadFile } from '../../services/fileService';
 import './LandingPage.scss';
 
 const LandingPage = () => {
+  const campaignState = useSelector(state => state.campaign);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const loadCampaignRef = useRef();
   const loadGameRef = useRef();
-
   const handleLoadCampaign = (pageAfterLoad) => (loadFileEvent) => {
     loadFile(loadFileEvent, (loadedCampaign) => {
       dispatch(
-        setCampaign(loadedCampaign)
+        setLoadedCampaign(loadedCampaign.content)
       );
 
       navigate(pageAfterLoad);
     });
   };
 
+  const handleCreateNewCampaign = () => {
+    dispatch(
+      setNewCampaign()
+    );
+
+    navigate('/create');
+  };
+
   return (
     <Stack id='landing-page-component' spacing='20px'>
-      <Button onClick={() => loadGameRef.current.click()}>
-        PLAY CAMPAIGN
+      {campaignState.data && 
+        <>
+        <Button
+          onClick={() => navigate('/game')}
+        >
+          PLAY
+        </Button>
+        <Button 
+          onClick={() => navigate('/create')}
+        >
+          CONTINUE EDIT
+        </Button>
+        </>
+      }
+      <Button
+        onClick={handleCreateNewCampaign}
+      >
+        CREATE NEW
       </Button>
-      <Button>
-        CREATE NEW CAMPAIGN
+      <Button
+        onClick={() => loadCampaignRef.current.click()}
+      >
+        LOAD & EDIT
       </Button>
-      <Button onClick={() => loadCampaignRef.current.click()}>
-        EDIT CAMPAIGN
+      <Button
+        onClick={() => loadGameRef.current.click()}
+      >
+        LOAD & PLAY
       </Button>
 
       {/* Used for loading a quest board campaign (.qbc) file */}

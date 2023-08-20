@@ -12,50 +12,72 @@ const _saveFile = (fileName, fileContent) => {
   link.parentNode.removeChild(link);
 };
 
-export const saveCampaign = (name, content) => {
+export const saveCampaign = (name, campaignContent) => {
   // Validation
   if (!name) {
-    return "A name is required to save the quest.";
+    return {
+      error: "A name is required to save the campaign."
+    };
   }
+
+  const campaignObj = { ...campaignContent };
+  const now = new Date();
 
   // Update file metadata
-  content.version = content.Version ? content.Version + 1 : 1;
-  content.lastModifiedDate = new Date().toDateString();
+  campaignObj.version = !campaignObj.version || campaignObj.name !== name 
+    ? 1
+    : campaignObj.version + 1;
+  campaignObj.name = name;
+  campaignObj.lastModifiedDate = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-  const fileName = `${name}.qbq`,
-        fileContent = JSON.stringify(content);
+  const fileName = `${name}.qbc`,
+    fileContent = JSON.stringify(campaignObj, null, 2);
 
   _saveFile(fileName, fileContent);
 
-  return null;
+  return {
+    content: campaignObj
+  };
 };
 
-export const saveGame = (name, content) => {
+export const saveGame = (name, gameContent) => {
   // Validation
   if (!name) {
-    return "A name is required to save the game.";
+    return {
+      error: "A name is required to save the game."
+    };
   }
 
+  const gameObj = { ...gameContent };
+  const now = new Date();
+
+  // Update file metadata
+  gameObj.lastSaved = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+
   const fileName = `${name}.qbg`,
-    fileContent = JSON.stringify(content);
+    fileContent = JSON.stringify(gameObj, null, 2);
 
   _saveFile(fileName, fileContent);
+
+  return {
+    content: gameObj
+  };
 };
 
 export const loadFile = (file, setDataCallbackFunction) => {
   const fileReader = new FileReader();
 
-    const loadFileEvent = file.target.files[0]
-    fileReader.readAsText(loadFileEvent, "UTC-8");
+  const loadFileEvent = file.target.files[0]
+  fileReader.readAsText(loadFileEvent, "UTC-8");
 
-    fileReader.onload = (event) => {
-      if (event.target) {
-        const loadedFileContent = JSON.parse(event.target.result);
-        
-        setDataCallbackFunction({
-          content: loadedFileContent,
-          name: loadFileEvent.name
-        });
-      }
-    };
+  fileReader.onload = (event) => {
+    if (event.target) {
+      const loadedFileContent = JSON.parse(event.target.result);
+
+      setDataCallbackFunction({
+        content: loadedFileContent,
+        name: loadFileEvent.name
+      });
+    }
+  };
 };
