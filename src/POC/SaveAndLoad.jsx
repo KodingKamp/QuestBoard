@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button, Input, Stack } from '@mui/joy';
-import { SaveQuest } from '../services/fileService';
+import { loadFile, saveCampaign } from '../services/fileService';
 
 const testobj = {
   name: 'kamp',
@@ -20,7 +20,7 @@ const SaveAndLoad = () => {
       return;
     }
 
-    SaveQuest(
+    saveCampaign(
       inputValue,
       testobj
     );
@@ -34,21 +34,8 @@ const SaveAndLoad = () => {
     loadGameRef.current.click();
   };
 
-  const loadFile = (loadEvent) => {
-    const fileReader = new FileReader();
-
-    const loadFileEvent = loadEvent.target.files[0]
-
-    fileReader.readAsText(loadFileEvent, "UTC-8");
-
-    fileReader.onload = (loadedFile) => {
-      const loadedFileContent = JSON.parse(loadedFile.target.result);
-
-      setLoadedFile({
-        content: loadedFileContent,
-        name: loadFileEvent.name
-      });
-    };
+  const handleLoadedFile = (loadEvent) => {
+    loadFile(loadEvent, setLoadedFile);
   };
 
   return (
@@ -71,13 +58,13 @@ const SaveAndLoad = () => {
       <input type='file'
         style={{ display: 'none' }}
         ref={loadQuestRef}
-        onChange={loadFile}
+        onChange={handleLoadedFile}
         accept='.qbq'
       />
       <input type='file'
         style={{ display: 'none' }}
         ref={loadGameRef}
-        onChange={loadFile}
+        onChange={handleLoadedFile}
         accept='.qbg'
       />
     </Stack>

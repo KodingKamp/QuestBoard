@@ -1,10 +1,4 @@
 #landing-page-component {
-  display: grid;
-  place-items: center;
-  height: 100%;
-
-  .mode-button {
-    height: 300px;
-    width: 250px;
-  }
+  justify-self: center;
+  align-self: center;
 }
