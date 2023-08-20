@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import exampleReducer from "./reducers/exampleReducer";
+import campaignReducer from "./reducers/campaignReducer";
 
 // https://react-redux.js.org
 export default configureStore({
   reducer: {
-    // example: exampleReducer
+    campaign: campaignReducer,
   },
 });
