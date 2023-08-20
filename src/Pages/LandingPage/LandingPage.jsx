@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoadedCampaign, setNewCampaign } from '../../reducers/campaignReducer';
-import { Button, Stack } from '@mui/joy';
+import { Button, Stack, Typography } from '@mui/joy';
 import { loadFile } from '../../services/fileService';
 import './LandingPage.scss';
 
@@ -33,36 +33,43 @@ const LandingPage = () => {
   };
 
   return (
-    <Stack id='landing-page-component' spacing='20px'>
-      {campaignState.data && 
-        <>
+    <Stack id='landing-page-component' spacing='40px'>
+      <div>
+        <Typography level='h1' textAlign='center'>Quest Board</Typography>
+        <Typography>The only campaign companion you'll ever need.</Typography>
+      </div>
+
+      <Stack spacing='16px'>
+        {campaignState.data &&
+          <>
+            <Button
+              onClick={() => navigate('/game')}
+            >
+              PLAY
+            </Button>
+            <Button
+              onClick={() => navigate('/create')}
+            >
+              CONTINUE EDIT
+            </Button>
+          </>
+        }
         <Button
-          onClick={() => navigate('/game')}
+          onClick={handleCreateNewCampaign}
         >
-          PLAY
+          CREATE NEW
         </Button>
-        <Button 
-          onClick={() => navigate('/create')}
+        <Button
+          onClick={() => loadCampaignRef.current.click()}
         >
-          CONTINUE EDIT
+          LOAD & EDIT
         </Button>
-        </>
-      }
-      <Button
-        onClick={handleCreateNewCampaign}
-      >
-        CREATE NEW
-      </Button>
-      <Button
-        onClick={() => loadCampaignRef.current.click()}
-      >
-        LOAD & EDIT
-      </Button>
-      <Button
-        onClick={() => loadGameRef.current.click()}
-      >
-        LOAD & PLAY
-      </Button>
+        <Button
+          onClick={() => loadGameRef.current.click()}
+        >
+          LOAD & PLAY
+        </Button>
+      </Stack>
 
       {/* Used for loading a quest board campaign (.qbc) file */}
       <input type='file'
