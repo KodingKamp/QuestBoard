@@ -1,30 +1,33 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@mui/joy';
+import { Box, Button, Input } from '@mui/joy';
 import { setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
 import './CreatorMode.scss';
 
 const CreatorMode = () => {
-  const campaignState = useSelector(state => state.campaign);
-  
+  const campaignDataState = useSelector(state => state.campaign.data);
+
+  const campaignNameRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!campaignState.data) {
+    if (!campaignDataState) {
       navigate('/');
     }
-  }, [campaignState.data]);
+  }, [campaignDataState]);
 
   const handleClickedSaveCampaign = () => {
-    // TODO: Use input file name or existing if no input
-    let fileName = campaignState.isALoadedCampaign
-      ? campaignState.data.name
-      : "test";
+    let campaignName = campaignDataState.name,
+      campaignNameInputValue = campaignNameRef.current.childNodes[0].value;
 
-    const savedCampaign = saveCampaign(fileName, campaignState.data);
+    if (campaignNameInputValue && campaignName !== campaignNameInputValue) {
+      campaignName = campaignNameInputValue;
+    }
+
+    const savedCampaign = saveCampaign(campaignName, campaignDataState);
     if (saveCampaign.error) {
       return;
     }
@@ -36,7 +39,7 @@ const CreatorMode = () => {
 
   return (
     <div id='creator-mode-component'>
-      {campaignState.data &&
+      {campaignDataState &&
         <>
           <div>
             <Link to='/'>
@@ -46,9 +49,12 @@ const CreatorMode = () => {
             </Link>
           </div>
           <h1>Creator Mode</h1>
-          <Button onClick={handleClickedSaveCampaign}>
-            Save Campaign
-          </Button>
+          <Box display='flex'>
+            <Input placeholder="Enter name of campaign..." ref={campaignNameRef} />
+            <Button onClick={handleClickedSaveCampaign}>
+              Save Campaign
+            </Button>
+          </Box>
         </>
       }
     </div>

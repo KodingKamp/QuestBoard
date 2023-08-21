@@ -19,6 +19,10 @@ export const theme = extendTheme({
           800: '#591670',
           900: '#3C0F4B',
         },
+        text: {
+          primary: "#F1F1F1",
+          secondary: "#999"
+        }
       },
     },
   },
