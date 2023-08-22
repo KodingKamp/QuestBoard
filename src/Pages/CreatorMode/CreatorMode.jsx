@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Input } from '@mui/joy';
+import { Box, Button, Divider, IconButton, Input, Typography } from '@mui/joy';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addNode, setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
 import './CreatorMode.scss';
+import NodeExplorer from '../../components/NodeExplorer/NodeExplorer';
 
 const CreatorMode = () => {
   const campaignDataState = useSelector(state => state.campaign.data);
@@ -35,40 +37,34 @@ const CreatorMode = () => {
     dispatch(setCampaign(savedCampaign.content));
   };
 
-  const handleClickedAddNewNode = () => {
-    dispatch(addNode({
-      nodeName: 'test'
-    }));
-  };
-
   return (
     <div id='creator-mode-component'>
       {campaignDataState &&
         <>
-          <h1>Creator Mode</h1>
-          <div>
-            <Link to='/'>
-              <Button variant='plain'>
-                Back
+          <Box display='flex' justifyContent='space-between' className='page-header'>
+            <Box display='flex' gap='30px' alignItems='center'>
+              <Link to='/'>
+                <IconButton variant='plain' size='lg'>
+                  🔙
+                </IconButton>
+              </Link>
+              <Typography level='h1'>Creator Mode</Typography>
+            </Box>
+
+            <Box display='flex' gap='10px' alignItems='center'>
+              <Input sx={{ width: '400px' }}
+                placeholder="Enter name of campaign..."
+                ref={campaignNameRef}
+              />
+              <Button onClick={handleClickedSaveCampaign}>
+                Export
               </Button>
-            </Link>
-          </div>
-          <Box display='flex'>
-            <Input placeholder="Enter name of campaign..." ref={campaignNameRef} />
-            <Button onClick={handleClickedSaveCampaign}>
-              Export
-            </Button>
+            </Box>
           </Box>
-          <Button onClick={handleClickedAddNewNode}>
-            Add Test Node To Root
-          </Button>
-          <ul>
-            {campaignDataState && campaignDataState.nodes.Root.children.map(childrenNodeId => (
-              <li key={childrenNodeId}>
-                {campaignDataState.nodes[childrenNodeId].name}
-              </li>
-            ))}
-          </ul>
+          <Divider />
+          <div>
+            <NodeExplorer />
+          </div>
         </>
       }
     </div>
