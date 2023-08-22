@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Input } from '@mui/joy';
-import { setCampaign } from '../../reducers/campaignReducer';
+import { addNode, setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
 import './CreatorMode.scss';
 
@@ -32,15 +32,20 @@ const CreatorMode = () => {
       return;
     }
 
-    dispatch(
-      setCampaign(savedCampaign.content)
-    );
+    dispatch(setCampaign(savedCampaign.content));
+  };
+
+  const handleClickedAddNewNode = () => {
+    dispatch(addNode({
+      nodeName: 'test'
+    }));
   };
 
   return (
     <div id='creator-mode-component'>
       {campaignDataState &&
         <>
+          <h1>Creator Mode</h1>
           <div>
             <Link to='/'>
               <Button variant='plain'>
@@ -48,13 +53,22 @@ const CreatorMode = () => {
               </Button>
             </Link>
           </div>
-          <h1>Creator Mode</h1>
           <Box display='flex'>
             <Input placeholder="Enter name of campaign..." ref={campaignNameRef} />
             <Button onClick={handleClickedSaveCampaign}>
-              Save Campaign
+              Export
             </Button>
           </Box>
+          <Button onClick={handleClickedAddNewNode}>
+            Add Test Node To Root
+          </Button>
+          <ul>
+            {campaignDataState && campaignDataState.nodes.Root.children.map(childrenNodeId => (
+              <li key={childrenNodeId}>
+                {campaignDataState.nodes[childrenNodeId].name}
+              </li>
+            ))}
+          </ul>
         </>
       }
     </div>

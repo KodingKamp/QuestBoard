@@ -29,7 +29,6 @@ export const createNoteItem = (
   description,
 ) => {
   let now = new Date();
-
   return {
     description: description,
     timeStamp: `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`
