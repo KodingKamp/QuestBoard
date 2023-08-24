@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Divider, IconButton, Input, Typography } from '@mui/joy';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Button, Divider, IconButton, Input, Stack, Tooltip, Typography } from '@mui/joy';
 import { addNode, setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
-import './CreatorMode.scss';
 import NodeExplorer from '../../components/NodeExplorer/NodeExplorer';
+import './CreatorMode.scss';
 
 const CreatorMode = () => {
   const campaignDataState = useSelector(state => state.campaign.data);
+  const [viewState, setViewState] = useState(0);
 
   const campaignNameRef = useRef();
   const dispatch = useDispatch();
@@ -37,6 +37,12 @@ const CreatorMode = () => {
     dispatch(setCampaign(savedCampaign.content));
   };
 
+  const handleClickedAddNewNode = () => {
+    dispatch(addNode({
+      nodeName: 'test'
+    }));
+  };
+
   return (
     <div id='creator-mode-component'>
       {campaignDataState &&
@@ -44,8 +50,8 @@ const CreatorMode = () => {
           <Box display='flex' justifyContent='space-between' className='page-header'>
             <Box display='flex' gap='30px' alignItems='center'>
               <Link to='/'>
-                <IconButton variant='plain' size='lg'>
-                  🔙
+                <IconButton variant='plain' size='lg' className='home-btn'>
+                  🏠
                 </IconButton>
               </Link>
               <Typography level='h1'>Creator Mode</Typography>
@@ -61,9 +67,41 @@ const CreatorMode = () => {
               </Button>
             </Box>
           </Box>
+
           <Divider />
-          <div>
-            <NodeExplorer />
+
+          <div className='body-container'>
+            <Stack className='icon-bar-left icon-bar' spacing={2}>
+              <Tooltip title='Campaign' disableInteractive>
+                <span className='icon'>📓</span>
+              </Tooltip>
+              <Tooltip title='Quests' disableInteractive>
+                <span className='icon'>📜</span>
+              </Tooltip>
+              <Tooltip title='Settings' disableInteractive>
+                <span className='icon'>⚙️</span>
+              </Tooltip>
+            </Stack>
+
+            <div className='content-container-left content-container'>
+              Test
+            </div>
+
+            <div className='content-container-right content-container'>
+              Test
+            </div>
+
+            <Stack className='icon-bar-right icon-bar' spacing={2}>
+              <Tooltip title='Nodes' disableInteractive>
+                <span className='icon'>📄</span>
+              </Tooltip>
+              <Tooltip title='Intel' disableInteractive>
+                <span className='icon'>ℹ️</span>
+              </Tooltip>
+              <Tooltip title='Notes' disableInteractive>
+                <span className='icon'>📝</span>
+              </Tooltip>
+            </Stack>
           </div>
         </>
       }

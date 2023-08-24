@@ -1,5 +1,55 @@
+@import '../../styles/variables.scss';
+
 #creator-mode-component {
+  display: grid;
+  grid-template-rows: auto 1px 1fr;
+  gap: 20px;
+
   .page-header {
-    padding-bottom: 20px;
+    .home-btn {
+      font-size: 2rem;
+
+      &:hover {
+        background: rgb(55, 55, 55);
+      }
+    }
+  }
+
+  .body-container {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr auto;
+    gap: 10px;
+
+    .icon-bar {
+      border-radius: 10px;
+      padding: 10px;
+
+      &-left {
+        background-color: $secondary;
+      }
+
+      &-right {
+        background-color: $tertiary;
+      }
+
+      .icon {
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    .content-container {
+      border-radius: 10px;
+      padding: 10px;
+      color: $text-color;
+
+      &-left {
+        border: solid 3px $secondary;
+      }
+
+      &-right {
+        border: solid 3px $tertiary;
+      }
+    }
   }
 }
