@@ -24,3 +24,5 @@ src/POC/
 *.sln
 *.sw?
 package-lock.json
+
+IDEAS.md
