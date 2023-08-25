@@ -5,6 +5,7 @@ import { setLoadedCampaign, setNewCampaign } from '../../reducers/campaignReduce
 import { Button, Stack, Typography } from '@mui/joy';
 import { loadFile } from '../../services/fileService';
 import './LandingPage.scss';
+import AppVersioning from '../../components/AppVersioning/AppVersioning';
 
 const LandingPage = () => {
   const campaignState = useSelector(state => state.campaign);
@@ -70,6 +71,8 @@ const LandingPage = () => {
           LOAD & PLAY
         </Button>
       </Stack>
+
+      <AppVersioning />
 
       {/* Used for loading a quest board campaign (.qbc) file */}
       <input type='file'
