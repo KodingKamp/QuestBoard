@@ -17,31 +17,64 @@
 
   .body-container {
     display: grid;
-    grid-template-columns: auto 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
 
-    .icon-bar {
-      border-radius: 10px;
-      padding: 10px;
+    .tab-container {
+      display: grid;
+      gap: 10px;
+      background: unset;
 
       &-left {
-        background-color: $secondary;
+        grid-template-columns: auto 1fr;
       }
 
       &-right {
-        background-color: $tertiary;
+        grid-template-columns: 1fr auto;
       }
 
-      .icon {
-        font-size: 2rem;
-        cursor: pointer;
+      .icon-bar {
+        border-radius: 10px;
+        padding: 10px;
+
+        &.MuiTabList-root {
+          box-shadow: none;
+          gap: 10px;
+
+          .tab-icon {
+            font-size: 2rem;
+            padding: unset;
+            filter: brightness(0.4);
+
+            &.Mui-selected {
+              background: unset;
+              border-radius: 5px;
+              filter: unset;
+            }
+
+            &:hover {
+              background: unset;
+            }
+
+            &::after {
+              content: unset;
+            }
+          }
+        }
+
+        &-left {
+          background-color: $secondary;
+        }
+
+        &-right {
+          background-color: $tertiary;
+        }
       }
     }
 
     .content-container {
       border-radius: 10px;
       padding: 10px;
-      color: $text-color;
 
       &-left {
         border: solid 3px $secondary;
@@ -49,6 +82,10 @@
 
       &-right {
         border: solid 3px $tertiary;
+      }
+
+      .MuiTabPanel-root {
+        color: $text-color;
       }
     }
   }
