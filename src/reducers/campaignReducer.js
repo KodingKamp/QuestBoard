@@ -31,7 +31,7 @@ export const campaignSlice = createSlice({
       );
 
       state.data.nodes[node.id] = node;
-      state.data.nodes[payload.parentNode].children = [...state.data.nodes[payload.parentNode].children, node.id];
+      state.data.nodes[payload.parentNode].childrenIds = [...state.data.nodes[payload.parentNode].childrenIds, node.id];
     },
   },
 });

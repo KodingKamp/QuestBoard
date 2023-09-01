@@ -98,9 +98,15 @@ const CreatorMode = () => {
               </TabList>
 
               <div className='content-container-left content-container'>
-                <TabPanel value={0}>Node Explorer</TabPanel>
-                <TabPanel value={1}>Quest Explorer</TabPanel>
-                <TabPanel value={2}>Settings</TabPanel>
+                <TabPanel value={0}>
+                  <NodeExplorer />
+                </TabPanel>
+                <TabPanel value={1}>
+                  Quest Explorer
+                </TabPanel>
+                <TabPanel value={2}>
+                  Settings
+                </TabPanel>
               </div>
             </Tabs>
 
@@ -111,9 +117,15 @@ const CreatorMode = () => {
               className='tab-container-right tab-container'
             >
               <div className='content-container-right content-container'>
-                <TabPanel value={0}>Create new node</TabPanel>
-                <TabPanel value={1}>Create new intel</TabPanel>
-                <TabPanel value={2}>Add notes</TabPanel>
+                <TabPanel value={0}>
+                  <Button onClick={handleClickedAddNewNode}>Test Add</Button>
+                </TabPanel>
+                <TabPanel value={1}>
+                  Create new intel
+                </TabPanel>
+                <TabPanel value={2}>
+                  Add notes
+                </TabPanel>
               </div>
 
 

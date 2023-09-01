@@ -12,7 +12,8 @@ export const createNewCampaign = () => {
     nodes: {
       Root: {
         id: 'Root',
-        children: [],
+        childrenIds: [],
+        name: 'Root'
       },
     },
     quests: [],
