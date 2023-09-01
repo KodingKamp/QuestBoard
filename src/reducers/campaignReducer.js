@@ -4,7 +4,11 @@ import { createNewCampaign, createNewNode } from "../services/campaignService";
 const initialState = {
   data: null,
   isALoadedCampaign: false,
-  selectedNode: null,
+  selectedNode: {
+    id: null,
+    name: null,
+    type: null
+  },
 };
 
 export const campaignSlice = createSlice({

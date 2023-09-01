@@ -40,7 +40,7 @@ const CreatorMode = () => {
 
   const handleClickedAddNewNode = () => {
     dispatch(addNode({
-      nodeName: 'test'
+      nodeName: '~New Node~'
     }));
   };
 
@@ -75,7 +75,7 @@ const CreatorMode = () => {
             <Tabs value={leftViewState}
               onChange={(event, value) => setLeftViewState(value)}
               orientation='vertical'
-              className='tab-container-left tab-container'
+              className='icon-container-left icon-container'
             >
               <TabList
                 className='icon-bar-left icon-bar'
@@ -91,6 +91,16 @@ const CreatorMode = () => {
                   </Tooltip>
                 </Tab>
                 <Tab value={2} className='tab-icon'>
+                  <Tooltip title='Intel' disableInteractive>
+                    <span>ℹ️</span>
+                  </Tooltip>
+                </Tab>
+                {/* <Tab value={3} className='tab-icon'>
+                  <Tooltip title='Notes' disableInteractive>
+                    <span>📝</span>
+                  </Tooltip>
+                </Tab> */}
+                <Tab value={3} className='tab-icon'>
                   <Tooltip title='Settings' disableInteractive>
                     <span>⚙️</span>
                   </Tooltip>
@@ -105,50 +115,46 @@ const CreatorMode = () => {
                   Quest Explorer
                 </TabPanel>
                 <TabPanel value={2}>
+                  Intel settings
+                </TabPanel>
+                <TabPanel value={3}>
                   Settings
                 </TabPanel>
               </div>
             </Tabs>
 
 
-            <Tabs value={rightViewState}
+            <Box value={rightViewState}
               onChange={(event, value) => setRightViewState(value)}
               orientation='vertical'
-              className='tab-container-right tab-container'
+              className='icon-container-right icon-container'
             >
               <div className='content-container-right content-container'>
-                <TabPanel value={0}>
-                  <Button onClick={handleClickedAddNewNode}>Test Add</Button>
-                </TabPanel>
-                <TabPanel value={1}>
-                  Create new intel
-                </TabPanel>
-                <TabPanel value={2}>
-                  Add notes
-                </TabPanel>
+
+                TODO: Make node creation form
+
               </div>
 
 
-              <TabList
-                className='icon-bar-right icon-bar'
-              >
-                <Tab value={0} className='tab-icon'>
-                  <Tooltip title='Nodes' disableInteractive>
-                    <span>📄</span>
-                  </Tooltip>
-                </Tab>
-                <Tab value={1} className='tab-icon'>
-                  <Tooltip title='Intel' disableInteractive>
-                    <span>ℹ️</span>
-                  </Tooltip>
-                </Tab>
-                <Tab value={2} className='tab-icon'>
-                  <Tooltip title='Notes' disableInteractive>
-                    <span>📝</span>
-                  </Tooltip>
-                </Tab>
-              </TabList>
-            </Tabs>
+              <Stack className='icon-bar-right icon-bar' gap='20px'>
+                <Tooltip title='Add new node to selected node' disableInteractive>
+                  <IconButton component='span'
+                    variant='soft'
+                    onClick={handleClickedAddNewNode}
+                  >
+                    ➕
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title='Delete selected node' disableInteractive>
+                  <IconButton component='span'
+                    variant='outlined'
+                  >
+                    🗑️
+                  </IconButton>
+                </Tooltip>
+              </Stack>
+            </Box>
           </div>
         </>
       }

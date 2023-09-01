@@ -20,7 +20,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 
-    .tab-container {
+    .icon-container {
       display: grid;
       gap: 10px;
       background: unset;
@@ -42,8 +42,6 @@
           gap: 10px;
 
           .tab-icon {
-            font-size: 2rem;
-            padding: unset;
             filter: brightness(0.35);
 
             &.Mui-selected {
@@ -51,15 +49,20 @@
               border-radius: 5px;
               filter: unset;
             }
-
+  
             &:hover {
               background: unset;
             }
-
+  
             &::after {
               content: unset;
             }
           }
+        }
+
+        .tab-icon {
+          font-size: 2rem;
+          padding: unset;
         }
 
         &-left {
