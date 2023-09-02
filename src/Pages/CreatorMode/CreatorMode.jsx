@@ -95,11 +95,6 @@ const CreatorMode = () => {
                     <span>ℹ️</span>
                   </Tooltip>
                 </Tab>
-                {/* <Tab value={3} className='tab-icon'>
-                  <Tooltip title='Notes' disableInteractive>
-                    <span>📝</span>
-                  </Tooltip>
-                </Tab> */}
                 <Tab value={3} className='tab-icon'>
                   <Tooltip title='Settings' disableInteractive>
                     <span>⚙️</span>
@@ -107,20 +102,26 @@ const CreatorMode = () => {
                 </Tab>
               </TabList>
 
-              <div className='content-container-left content-container'>
-                <TabPanel value={0}>
-                  <NodeExplorer />
-                </TabPanel>
-                <TabPanel value={1}>
-                  Quest Explorer
-                </TabPanel>
-                <TabPanel value={2}>
-                  Intel settings
-                </TabPanel>
-                <TabPanel value={3}>
-                  Settings
-                </TabPanel>
-              </div>
+              <TabPanel className='content-container-left content-container'
+                value={0}
+              >
+                <NodeExplorer />
+              </TabPanel>
+              <TabPanel className='content-container-left content-container'
+                value={1}
+              >
+                Quest Explorer
+              </TabPanel>
+              <TabPanel className='content-container-left content-container'
+                value={2}
+              >
+                Intel settings
+              </TabPanel>
+              <TabPanel className='content-container-left content-container'
+                value={3}
+              >
+                Settings
+              </TabPanel>
             </Tabs>
 
 

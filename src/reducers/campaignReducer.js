@@ -5,9 +5,8 @@ const initialState = {
   data: null,
   isALoadedCampaign: false,
   selectedNode: {
-    id: null,
-    name: null,
-    type: null
+    id: 'Root',
+    name: 'Root',
   },
 };
 
@@ -35,18 +34,24 @@ export const campaignSlice = createSlice({
       );
 
       state.data.nodes[node.id] = node;
-      state.data.nodes[payload.parentNode].childrenIds = [...state.data.nodes[payload.parentNode].childrenIds, node.id];
+      state.data.nodes[state.selectedNode.id].childrenIds = [...state.data.nodes[state.selectedNode.id].childrenIds, node.id];
+    },
+    setSelectedNode: (state, {payload}) => {
+      state.selectedNode = payload;
+    },
+    deselectNode: (state) => {
+      state.selectedNode = initialState.selectedNode;
     },
   },
 });
-
-
 
 export const {
   setCampaign,
   setNewCampaign,
   setLoadedCampaign,
   addNode,
+  setSelectedNode,
+  deselectNode,
 } = campaignSlice.actions;
 
 export default campaignSlice.reducer;

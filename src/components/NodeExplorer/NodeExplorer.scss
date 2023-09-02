@@ -1,1 +1,23 @@
-.node-explorer-component {}
+.node-accordion {
+  .accordion-summary {
+    .selection-checkbox {
+      visibility: hidden;
+    }
+    
+    .MuiAccordionSummary-button {
+      &:hover {
+        background: unset;
+
+        .selection-checkbox {
+          visibility: initial;
+        }
+      }
+    }
+
+    .expanded-carret {
+      filter: brightness(5);
+      transition: all 0.2s ease-out;
+      position: relative;
+    }
+  }
+}
