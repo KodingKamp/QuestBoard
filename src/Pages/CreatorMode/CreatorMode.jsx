@@ -6,6 +6,7 @@ import { addNode, setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
 import NodeExplorer from '../../components/NodeExplorer/NodeExplorer';
 import './CreatorMode.scss';
+import NodeCreationForm from '../../components/NodeCreationForm/NodeCreationForm';
 
 const CreatorMode = () => {
   const campaignDataState = useSelector(state => state.campaign.data);
@@ -39,9 +40,7 @@ const CreatorMode = () => {
   };
 
   const handleClickedAddNewNode = () => {
-    dispatch(addNode({
-      nodeName: '~New Node~'
-    }));
+    dispatch(addNode());
   };
 
   return (
@@ -81,7 +80,7 @@ const CreatorMode = () => {
                 className='icon-bar-left icon-bar'
               >
                 <Tab value={0} className='tab-icon'>
-                  <Tooltip title='Campaign' disableInteractive>
+                  <Tooltip title='Node Explorer' disableInteractive>
                     <span>📓</span>
                   </Tooltip>
                 </Tab>
@@ -131,9 +130,7 @@ const CreatorMode = () => {
               className='icon-container-right icon-container'
             >
               <div className='content-container-right content-container'>
-
-                TODO: Make node creation form
-
+                <NodeCreationForm />
               </div>
 
 
@@ -147,11 +144,27 @@ const CreatorMode = () => {
                   </IconButton>
                 </Tooltip>
 
+                <Tooltip title='Save selected node' disableInteractive>
+                  <IconButton component='span'
+                    variant='outlined'
+                  >
+                    💾
+                  </IconButton>
+                </Tooltip>
+
                 <Tooltip title='Delete selected node' disableInteractive>
                   <IconButton component='span'
                     variant='outlined'
                   >
                     🗑️
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title='Clear selected node' disableInteractive>
+                  <IconButton component='span'
+                    variant='outlined'
+                  >
+                    🧹
                   </IconButton>
                 </Tooltip>
               </Stack>

@@ -14,29 +14,51 @@ export const campaignSlice = createSlice({
   name: 'campaign',
   initialState,
   reducers: {
-    setCampaign: (state, {payload}) => {
+    setCampaign: (state, { payload }) => {
       state.data = payload;
     },
     setNewCampaign: (state) => {
       state.data = createNewCampaign();
     },
-    setLoadedCampaign: (state, {payload}) => {
+    setLoadedCampaign: (state, { payload }) => {
       state.data = payload;
       state.isALoadedCampaign = true;
     },
-    addNode: (state, {payload}) => {
-      const node = createNewNode(
-        payload.nodeName,
-        payload.type,
-        payload.description,
-        payload.parentNode = 'Root',
-        payload.unlockedByDefault
+    addNode: (state) => {
+      const newNode = createNewNode(
+        state.selectedNode.id
       );
 
-      state.data.nodes[node.id] = node;
-      state.data.nodes[state.selectedNode.id].childrenIds = [...state.data.nodes[state.selectedNode.id].childrenIds, node.id];
+      state.data.nodes[newNode.id] = newNode;
+      state.data.nodes[state.selectedNode.id].childrenIds = [
+        ...state.data.nodes[state.selectedNode.id].childrenIds,
+        newNode.id
+      ];
+
+      // select newly created node
+      state.selectedNode = newNode;
     },
-    setSelectedNode: (state, {payload}) => {
+    updateNode: (state, { payload }) => {
+      let node = {
+        id: payload.id,
+        name: payload.name,
+        description: payload.description,
+        type: payload.type,
+        parentId: payload.parentId,
+        childrenIds: payload.childrenIds,
+        intel: payload.intel,
+        notes: payload.notes,
+        isUnlocked: payload.isUnlocked,
+        hasVisited: payload.hasVisited,
+        isAvailable: payload.isAvailable
+      };
+
+      state.data.nodes[node.id] = node;
+
+      // update selected state
+      state.selectedNode = node;
+    },
+    setSelectedNode: (state, { payload }) => {
       state.selectedNode = payload;
     },
     deselectNode: (state) => {
@@ -50,6 +72,7 @@ export const {
   setNewCampaign,
   setLoadedCampaign,
   addNode,
+  updateNode: updateNode,
   setSelectedNode,
   deselectNode,
 } = campaignSlice.actions;

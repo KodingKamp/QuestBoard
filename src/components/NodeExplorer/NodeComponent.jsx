@@ -87,7 +87,7 @@ const NodeComponent = ({
 
               <Tooltip disableInteractive title={node.name}>
                 <Typography noWrap>
-                  {node.name}
+                  {node.name ?? '~New Node~'}
                 </Typography>
               </Tooltip>
             </Box>
@@ -108,9 +108,6 @@ const NodeComponent = ({
               color='white'
             >
               <i>empty</i>
-              <Divider sx={{
-                bottom: '6px'
-              }} />
             </Box>
           }
         </AccordionDetails>

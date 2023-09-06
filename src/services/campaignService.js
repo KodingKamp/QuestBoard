@@ -80,30 +80,22 @@ export const createNewActivityItem = (
 
 /**
  * Creates a new Node object.
- * @param {string} nodeName The display name of the Node.
- * @param {string} description The description of the Node.
- * @param {string} type The type of the Node. Cannot be 'Intel'
  * @param {string} parentNode The UUID of the parent Node.
- * @param {string} unlockedByDefault Whether or not the Node is unlocked by default. Default is false.
  * @returns An Node object.
  */
 export const createNewNode = (
-  nodeName,
-  type,
-  description = '',
-  parentNode = 'Root',
-  unlockedByDefault = false,
+  parentNode = 'Root'
 ) => {
   return {
     id: uuid(),
-    name: nodeName,
-    description: description,
-    type: type === 'Intel' ? 'GenericNode' : type,
+    name: null,
+    description: null,
+    type: 'GenericNode',
     parentId: parentNode,
     childrenIds: [],
     intel: [],
     notes: [], 
-    isUnlocked: unlockedByDefault, // Where or not players can visit this node.
+    isUnlocked: false, // Where or not players can visit this node.
     hasVisited: false, // Whether or not players have visited this node yet.
     isAvailable: true, // Whether or not players can visit this anymore.
   };
