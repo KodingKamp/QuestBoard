@@ -33,7 +33,7 @@ const NodeComponent = ({
   };
 
   return (
-    <AccordionGroup size="small" sx={{ marginTop: '4px' }}>
+    <AccordionGroup size="sm" sx={{ marginTop: '4px' }}>
       <Accordion defaultExpanded
         expanded={isExpanded}
         className='node-accordion'
@@ -54,9 +54,12 @@ const NodeComponent = ({
                 checked={isSelected}
                 onChange={handleClickedEdit}
                 className='selection-checkbox'
-                sx={isSelected && {
-                  visibility: 'visible !important'
-                }}
+                sx={isSelected
+                  ? {
+                    visibility: 'visible !important'
+                  }
+                  : {}
+                }
               />
             </Tooltip>
 
