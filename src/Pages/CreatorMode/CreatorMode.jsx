@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Divider, IconButton, Input, Stack, Tab, TabList, TabPanel, Tabs, Tooltip, Typography } from '@mui/joy';
 import { addNode, setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
 import NodeExplorer from '../../components/NodeExplorer/NodeExplorer';
-import './CreatorMode.scss';
 import NodeCreationForm from '../../components/NodeCreationForm/NodeCreationForm';
+import './CreatorMode.scss';
 
 const CreatorMode = () => {
   const campaignDataState = useSelector(state => state.campaign.data);
+  const selectedNode = useSelector(state => state.campaign.selectedNode);
   const [leftViewState, setLeftViewState] = useState(0);
   const [rightViewState, setRightViewState] = useState(0);
 
@@ -22,6 +23,11 @@ const CreatorMode = () => {
       navigate('/');
     }
   }, [campaignDataState]);
+
+  const hasNodeSelected = useMemo(
+    () => selectedNode.id !== 'Root',
+    [selectedNode.id]
+  );
 
   const handleClickedSaveCampaign = () => {
     let campaignName = campaignDataState.name,
@@ -135,7 +141,7 @@ const CreatorMode = () => {
 
 
               <Stack className='icon-bar-right icon-bar' gap='20px'>
-                <Tooltip title='Add new node to selected node' disableInteractive>
+                <Tooltip title={`Add new node to ${hasNodeSelected ? 'selected node' : 'the root'}`} disableInteractive>
                   <IconButton component='span'
                     variant='soft'
                     onClick={handleClickedAddNewNode}
@@ -147,6 +153,7 @@ const CreatorMode = () => {
                 <Tooltip title='Save selected node' disableInteractive>
                   <IconButton component='span'
                     variant='outlined'
+                    disabled={!hasNodeSelected}
                   >
                     💾
                   </IconButton>
@@ -155,6 +162,7 @@ const CreatorMode = () => {
                 <Tooltip title='Delete selected node' disableInteractive>
                   <IconButton component='span'
                     variant='outlined'
+                    disabled={!hasNodeSelected}
                   >
                     🗑️
                   </IconButton>
@@ -163,6 +171,7 @@ const CreatorMode = () => {
                 <Tooltip title='Clear selected node' disableInteractive>
                   <IconButton component='span'
                     variant='outlined'
+                    disabled={!hasNodeSelected}
                   >
                     🧹
                   </IconButton>

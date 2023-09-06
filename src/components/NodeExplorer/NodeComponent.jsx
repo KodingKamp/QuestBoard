@@ -90,7 +90,7 @@ const NodeComponent = ({
 
               <Tooltip disableInteractive title={node.name}>
                 <Typography noWrap>
-                  {node.name ?? '~New Node~'}
+                  {node.name !== '' ? node.name : '~New Node~'}
                 </Typography>
               </Tooltip>
             </Box>

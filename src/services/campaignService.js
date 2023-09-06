@@ -88,8 +88,8 @@ export const createNewNode = (
 ) => {
   return {
     id: uuid(),
-    name: null,
-    description: null,
+    name: '',
+    description: '',
     type: 'GenericNode',
     parentId: parentNode,
     childrenIds: [],

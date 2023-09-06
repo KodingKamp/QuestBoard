@@ -7,15 +7,23 @@ const NodeExplorer = () => {
   const nodes = useSelector(state => state.campaign.data.nodes);
 
   return (
-    <div>
+    <Box>
       <Typography level='h4'>Node Explorer</Typography>
 
       <Divider />
 
-      {nodes?.Root?.childrenIds && nodes.Root.childrenIds.map(childId => (
-        <NodeComponent key={childId} node={nodes[childId]} />
-      ))}
-    </div>
+      <Box paddingY={1}>
+        {nodes?.Root?.childrenIds && nodes.Root.childrenIds.map(childId => (
+          <NodeComponent key={childId} node={nodes[childId]} />
+        ))}
+
+        {nodes?.Root?.childrenIds?.length === 0 &&
+          <Typography>
+            <i>empty</i>
+          </Typography>
+        }
+      </Box>
+    </Box>
   );
 };
 
