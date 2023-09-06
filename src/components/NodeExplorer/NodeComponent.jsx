@@ -43,12 +43,12 @@ const NodeComponent = ({
           className='accordion-summary'
           sx={{
             position: 'relative',
-            left: level === 0 ? '0px' : `${indentation}px`
+            left: `${indentation * level}px`
           }}
         >
           <Box display='flex' alignItems='center' gap='4px'>
             <Tooltip disableInteractive
-              title={isSelected ? 'Deselect node' :'Select node'}
+              title={isSelected ? 'Deselect node' : 'Select node'}
             >
               <Checkbox size="sm"
                 checked={isSelected}
@@ -85,9 +85,11 @@ const NodeComponent = ({
                 </span>
               </Tooltip>
 
-              <Typography noWrap>
-                {node.name}
-              </Typography>
+              <Tooltip disableInteractive title={node.name}>
+                <Typography noWrap>
+                  {node.name}
+                </Typography>
+              </Tooltip>
             </Box>
           </Box>
         </AccordionSummary>
