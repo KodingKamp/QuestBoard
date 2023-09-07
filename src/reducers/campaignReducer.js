@@ -7,6 +7,15 @@ const initialState = {
   selectedNode: {
     id: 'Root',
     name: 'Root',
+    description: '',
+    type: '',
+    parentId: null,
+    childrenIds: [],
+    intel: [],
+    notes: [],
+    isUnlocked: false,
+    hasVisited: false,
+    isAvailable: false
   },
 };
 

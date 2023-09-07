@@ -1,0 +1,116 @@
+{
+  "name": "Mines of Phandelver",
+  "version": 1,
+  "lastModifiedDate": "9/6/2023 9:39:42 PM",
+  "nodes": {
+    "Root": {
+      "id": "Root",
+      "childrenIds": [
+        "83291aeb-319c-4a8b-ad75-d487ea959787",
+        "ae21f5bf-4803-49f4-a163-b130b725811d",
+        "ca578cae-4e57-4706-ba57-bf4283491f33"
+      ],
+      "name": "Root"
+    },
+    "83291aeb-319c-4a8b-ad75-d487ea959787": {
+      "id": "83291aeb-319c-4a8b-ad75-d487ea959787",
+      "name": "Chapter 1",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "Root",
+      "childrenIds": [
+        "d9b0c510-ab86-478f-bbdc-7c2a77c15882"
+      ],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    },
+    "d9b0c510-ab86-478f-bbdc-7c2a77c15882": {
+      "id": "d9b0c510-ab86-478f-bbdc-7c2a77c15882",
+      "name": "Phandelin",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "83291aeb-319c-4a8b-ad75-d487ea959787",
+      "childrenIds": [
+        "51253a57-86f0-490d-ad72-59ba831e3016"
+      ],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    },
+    "ae21f5bf-4803-49f4-a163-b130b725811d": {
+      "id": "ae21f5bf-4803-49f4-a163-b130b725811d",
+      "name": "Chapter 2",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "Root",
+      "childrenIds": [],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    },
+    "ca578cae-4e57-4706-ba57-bf4283491f33": {
+      "id": "ca578cae-4e57-4706-ba57-bf4283491f33",
+      "name": "Chapter 3",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "Root",
+      "childrenIds": [],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    },
+    "51253a57-86f0-490d-ad72-59ba831e3016": {
+      "id": "51253a57-86f0-490d-ad72-59ba831e3016",
+      "name": "Barthen's Provisions",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "d9b0c510-ab86-478f-bbdc-7c2a77c15882",
+      "childrenIds": [
+        "e2c7fe40-0200-475e-81ab-33d08b656e13",
+        "f900ab42-d135-44a3-bbbc-ea12215e0280"
+      ],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    },
+    "e2c7fe40-0200-475e-81ab-33d08b656e13": {
+      "id": "e2c7fe40-0200-475e-81ab-33d08b656e13",
+      "name": "Barthen",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "51253a57-86f0-490d-ad72-59ba831e3016",
+      "childrenIds": [],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    },
+    "f900ab42-d135-44a3-bbbc-ea12215e0280": {
+      "id": "f900ab42-d135-44a3-bbbc-ea12215e0280",
+      "name": "Barthen's Wife",
+      "description": "",
+      "type": "GenericNode",
+      "parentId": "51253a57-86f0-490d-ad72-59ba831e3016",
+      "childrenIds": [],
+      "intel": [],
+      "notes": [],
+      "isUnlocked": false,
+      "hasVisited": false,
+      "isAvailable": true
+    }
+  },
+  "quests": [],
+  "activityLog": {}
+}

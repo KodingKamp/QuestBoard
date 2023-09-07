@@ -12,7 +12,6 @@ const CreatorMode = () => {
   const campaignDataState = useSelector(state => state.campaign.data);
   const selectedNode = useSelector(state => state.campaign.selectedNode);
   const [leftViewState, setLeftViewState] = useState(0);
-  const [rightViewState, setRightViewState] = useState(0);
 
   const campaignNameRef = useRef();
   const dispatch = useDispatch();
@@ -130,10 +129,7 @@ const CreatorMode = () => {
             </Tabs>
 
 
-            <Box value={rightViewState}
-              onChange={(event, value) => setRightViewState(value)}
-              orientation='vertical'
-              className='icon-container-right icon-container'
+            <Box className='icon-container-right icon-container'
             >
               <div className='content-container-right content-container'>
                 <NodeCreationForm />
@@ -150,7 +146,7 @@ const CreatorMode = () => {
                   </IconButton>
                 </Tooltip>
 
-                <Tooltip title='Save selected node' disableInteractive>
+                {/* <Tooltip title='Save selected node' disableInteractive>
                   <IconButton component='span'
                     variant='outlined'
                     disabled={!hasNodeSelected}
@@ -175,7 +171,7 @@ const CreatorMode = () => {
                   >
                     🧹
                   </IconButton>
-                </Tooltip>
+                </Tooltip> */}
               </Stack>
             </Box>
           </div>

@@ -12,7 +12,7 @@ const NodeExplorer = () => {
 
       <Divider />
 
-      <Box paddingY={1}>
+      <Box>
         {nodes?.Root?.childrenIds && nodes.Root.childrenIds.map(childId => (
           <NodeComponent key={childId} node={nodes[childId]} />
         ))}
