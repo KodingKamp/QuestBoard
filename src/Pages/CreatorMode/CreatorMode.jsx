@@ -20,6 +20,11 @@ const CreatorMode = () => {
   useEffect(() => {
     if (!campaignDataState) {
       navigate('/');
+      return;
+    } else {
+      if (campaignNameRef.current) {
+        campaignNameRef.current.childNodes[0].value = campaignDataState.name
+      }
     }
   }, [campaignDataState]);
 
