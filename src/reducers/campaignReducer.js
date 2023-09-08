@@ -28,10 +28,16 @@ export const campaignSlice = createSlice({
     },
     setNewCampaign: (state) => {
       state.data = createNewCampaign();
+
+      // reset selected state
+      state.selectedNode = initialState.selectedNode;
     },
     setLoadedCampaign: (state, { payload }) => {
       state.data = payload;
       state.isALoadedCampaign = true;
+      
+      // reset selected state
+      state.selectedNode = initialState.selectedNode;
     },
     addNode: (state) => {
       const newNode = createNewNode(

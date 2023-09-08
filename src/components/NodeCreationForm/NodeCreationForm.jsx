@@ -1,56 +1,42 @@
 import { Box, Button, Divider, Input, Stack, Textarea, Typography } from '@mui/joy';
-import React, { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateNode } from '../../reducers/campaignReducer';
 
 const NodeCreationForm = () => {
   const selectedNode = useSelector(state => state.campaign.selectedNode);
 
-  const [formNode, setFormNode] = useState(selectedNode);
+  const nameInputRef = useRef(null);
+  const descriptionInputRef = useRef(null);
+  const typeInputRef = useRef(null);
 
   const dispatch = useDispatch();
 
   useEffect(
     () => {
-      setFormNode(prev => selectedNode);
+      if (nameInputRef.current) {
+        nameInputRef.current.children[0].value = selectedNode.name;
+      }
+
+      if (descriptionInputRef.current) {
+        descriptionInputRef.current.children[0].value = selectedNode.description;
+      }
+
+      if (typeInputRef.current) {
+        typeInputRef.current.children[0].value = selectedNode.type;
+      }
     },
-    [selectedNode]
+    [selectedNode.id]
   );
 
-  const handleNameChanged = (event) => {
-    const node = { ...formNode };
-
-    node.name = event.target.value;
-
-    setFormNode(node);
-  };
-
-  const handleDescriptionChanged = (event) => {
-    const node = { ...formNode };
-
-    node.description = event.target.value;
-
-    setFormNode(node);
-  };
-
-  const handleTypeChanged = (event) => {
-    const node = { ...formNode };
-
-    node.type = event.target.value;
-
-    setFormNode(node);
-  };
-
-  const handleIsUnlockedChanged = () => {
-
-  };
-
-  const handleIsAvailableChanged = () => {
-
-  };
-
   const handleSaveClicked = () => {
-    dispatch(updateNode(formNode));
+    const replacementNode = { ...selectedNode };
+
+    replacementNode.name = nameInputRef.current.children[0].value;
+    replacementNode.description = descriptionInputRef.current.children[0].value;
+    replacementNode.type = typeInputRef.current.children[0].value;
+
+    dispatch(updateNode(replacementNode));
   };
 
   return (
@@ -63,7 +49,7 @@ const NodeCreationForm = () => {
 
       {selectedNode.id === 'Root'
         ?
-        <Stack color='white' gap={2}>
+        <Stack color='white' paddingY={2} gap={2}>
           <Typography>
             No node selected.
           </Typography>
@@ -77,31 +63,26 @@ const NodeCreationForm = () => {
           <Stack color='white' paddingY={2} gap={2}>
             <InputWithLabel
               label='Name:'
-              value={formNode.name}
               placeholder='Enter node name...'
-              onChange={handleNameChanged}
+              ref={nameInputRef}
             />
             <TextAreaWithLabel
-            label='Description:'
-            value={formNode.description}
-            placeholder='Enter node description...'
-            onChange={handleDescriptionChanged}
-          />
-          <InputWithLabel
-            label='Type:'
-            value={formNode.type}
-            placeholder='Enter node type...'
-            onChange={handleTypeChanged}
-          />
-          </Stack>
-          <Box>
+              label='Description:'
+              placeholder='Enter node description...'
+              ref={descriptionInputRef}
+            />
+            <InputWithLabel
+              label='Type:'
+              placeholder='Enter node type...'
+              ref={typeInputRef}
+            />
             <Button
               startDecorator='💾'
               onClick={handleSaveClicked}
             >
               Save
             </Button>
-          </Box>
+          </Stack>
         </Box>
 
       }
@@ -111,40 +92,44 @@ const NodeCreationForm = () => {
 
 export default NodeCreationForm;
 
-const InputWithLabel = ({
-  label,
-  value,
-  placeholder,
-  onChange
-}) => {
+const InputWithLabel = forwardRef((
+  {
+    label,
+    defaultValue,
+    placeholder,
+  },
+  ref
+) => {
   return (
     <Box>
       <Typography level='body-xs'>{label}</Typography>
       <Input size='sm'
-        value={value}
+        defaultValue={defaultValue}
         placeholder={placeholder}
-        onChange={onChange}
+        ref={ref}
       />
     </Box>
   );
-};
+});
 
-const TextAreaWithLabel = ({
-  label,
-  value,
-  placeholder,
-  onChange
-}) => {
+const TextAreaWithLabel = forwardRef((
+  {
+    label,
+    defaultValue,
+    placeholder,
+  },
+  ref
+) => {
   return (
     <Box>
       <Typography level='body-xs'>{label}</Typography>
       <Textarea size='sm'
         minRows={2}
         maxRows={4}
-        value={value}
+        defaultValue={defaultValue}
         placeholder={placeholder}
-        onChange={onChange}
+        ref={ref}
       />
     </Box>
   );
-};
+});

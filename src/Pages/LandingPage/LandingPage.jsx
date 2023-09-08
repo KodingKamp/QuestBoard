@@ -4,32 +4,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLoadedCampaign, setNewCampaign } from '../../reducers/campaignReducer';
 import { Button, Stack, Typography } from '@mui/joy';
 import { loadFile } from '../../services/fileService';
-import './LandingPage.scss';
 import AppVersioning from '../../components/AppVersioning/AppVersioning';
+import './LandingPage.scss';
 
 const LandingPage = () => {
   const campaignState = useSelector(state => state.campaign);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const loadCampaignRef = useRef();
   const loadGameRef = useRef();
-  const handleLoadCampaign = (pageAfterLoad) => (loadFileEvent) => {
-    loadFile(loadFileEvent, (loadedCampaign) => {
-      dispatch(
-        setLoadedCampaign(loadedCampaign.content)
-      );
 
-      navigate(pageAfterLoad);
-    });
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleLoadCampaign = (pageAfterLoad) => (loadFileEvent) => {
+    loadFile(
+      loadFileEvent,
+      (loadedCampaign) => {
+        dispatch(setLoadedCampaign(loadedCampaign.content));
+        navigate(pageAfterLoad);
+      }
+    );
   };
 
   const handleCreateNewCampaign = () => {
-    dispatch(
-      setNewCampaign()
-    );
-
+    dispatch(setNewCampaign());
     navigate('/create');
   };
 

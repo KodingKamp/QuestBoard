@@ -14,6 +14,7 @@ const NodeComponent = ({
   const [isExpanded, setIsExpanded] = useState(true);
 
   const dispatch = useDispatch();
+
   const isSelected = useMemo(
     () => node.id === selectedNodeId,
     [selectedNodeId]
@@ -65,7 +66,6 @@ const NodeComponent = ({
                 }
               />
             </Tooltip>
-
 
             <Box display='flex'
               gap='4px'
