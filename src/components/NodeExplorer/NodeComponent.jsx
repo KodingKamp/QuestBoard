@@ -21,14 +21,17 @@ const NodeComponent = ({
 
   const handleClickedEdit = (event) => {
     if (event.target.checked) {
-      dispatch(
-        setSelectedNode(node)
-      );
+      dispatch(setSelectedNode(node));
+    } else {
+      dispatch(deselectNode());
     }
-    else {
-      dispatch(
-        deselectNode()
-      );
+  };
+
+  const toggleSelection = () => {
+    if (isSelected) {
+      dispatch(deselectNode());
+    } else {
+      dispatch(setSelectedNode(node));
     }
   };
 
@@ -67,21 +70,24 @@ const NodeComponent = ({
             <Box display='flex'
               gap='4px'
               flexGrow='1'
-              onClick={() => setIsExpanded(state => !state)}
+              alignItems='center'
             >
               <Tooltip disableInteractive
                 title='Toggle inner section'
               >
                 <span
                   className='expanded-carret'
+                  onClick={() => setIsExpanded(state => !state)}
                   style={isExpanded
                     ? {
                       transform: 'rotate(30deg)',
                       top: '-3px',
+                      left: '0px',
                     }
                     : {
                       transform: 'rotate(-150deg)',
                       top: '3px',
+                      left: '2px',
                     }}
                 >
                   🍕
@@ -89,7 +95,9 @@ const NodeComponent = ({
               </Tooltip>
 
               <Tooltip disableInteractive title={node.name}>
-                <Typography noWrap>
+                <Typography noWrap
+                  onClick={toggleSelection}
+                >
                   {node.name !== '' ? node.name : '~New Node~'}
                 </Typography>
               </Tooltip>
