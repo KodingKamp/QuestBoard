@@ -25,12 +25,20 @@ const NodeCreationForm = () => {
     setFormNode(node);
   };
 
-  const handleDescriptionChanged = () => {
+  const handleDescriptionChanged = (event) => {
+    const node = { ...formNode };
 
+    node.description = event.target.value;
+
+    setFormNode(node);
   };
 
-  const handleTypeChanged = () => {
+  const handleTypeChanged = (event) => {
+    const node = { ...formNode };
 
+    node.type = event.target.value;
+
+    setFormNode(node);
   };
 
   const handleIsUnlockedChanged = () => {
@@ -73,7 +81,7 @@ const NodeCreationForm = () => {
               placeholder='Enter node name...'
               onChange={handleNameChanged}
             />
-            {/* <TextAreaWithLabel
+            <TextAreaWithLabel
             label='Description:'
             value={formNode.description}
             placeholder='Enter node description...'
@@ -84,7 +92,7 @@ const NodeCreationForm = () => {
             value={formNode.type}
             placeholder='Enter node type...'
             onChange={handleTypeChanged}
-          /> */}
+          />
           </Stack>
           <Box>
             <Button
