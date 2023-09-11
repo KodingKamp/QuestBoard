@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { CssVarsProvider } from '@mui/joy';
+import { ThemeProvider } from '@mui/material';
 import store from './store.js';
 import { CreatorMode, LandingPage, GameMode } from './Pages';
 import { theme } from './styles/theme.js';
@@ -24,8 +24,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <CssVarsProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
-    </CssVarsProvider>
+    </ThemeProvider>
   </Provider>
 );

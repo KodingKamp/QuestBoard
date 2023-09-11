@@ -35,7 +35,7 @@ export const campaignSlice = createSlice({
     setLoadedCampaign: (state, { payload }) => {
       state.data = payload;
       state.isALoadedCampaign = true;
-      
+
       // reset selected state
       state.selectedNode = initialState.selectedNode;
     },
@@ -79,6 +79,9 @@ export const campaignSlice = createSlice({
     deselectNode: (state) => {
       state.selectedNode = initialState.selectedNode;
     },
+    selectNodeById: (state, { payload }) => {
+      state.selectedNode = state.data.nodes[payload];
+    }
   },
 });
 
@@ -87,9 +90,10 @@ export const {
   setNewCampaign,
   setLoadedCampaign,
   addNode,
-  updateNode: updateNode,
+  updateNode,
   setSelectedNode,
   deselectNode,
+  selectNodeById,
 } = campaignSlice.actions;
 
 export default campaignSlice.reducer;

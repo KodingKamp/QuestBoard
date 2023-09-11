@@ -1,10 +1,25 @@
 .node-accordion {
+  .MuiAccordionSummary-root {
+    min-height: unset;
+    &.Mui-expanded {
+      min-height: unset;
+    }
+
+    .MuiAccordionSummary-content {
+      margin: 0;
+      &.Mui-expanded {
+        margin: 0;
+      }
+    }
+  }
+
   .accordion-summary {
     .selection-checkbox {
       visibility: hidden;
+      padding: 0;
     }
-    
-    .MuiAccordionSummary-button {
+
+    .MuiAccordionSummary-content {
       &:hover {
         background: unset;
 

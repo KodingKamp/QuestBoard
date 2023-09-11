@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button } from '@mui/joy';
+import { Button } from '@mui/material';
 import './GameMode.scss';
 
 const GameMode = () => {

@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Input, Stack, Textarea, Typography } from '@mui/joy';
+import { Box, Button, Divider, Input, List, Stack, TextField, Typography } from '@mui/material';
 import { forwardRef, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateNode } from '../../reducers/campaignReducer';
@@ -66,18 +66,26 @@ const NodeCreationForm = () => {
               placeholder='Enter node name...'
               ref={nameInputRef}
             />
+
             <TextAreaWithLabel
               label='Description:'
               placeholder='Enter node description...'
               ref={descriptionInputRef}
             />
+
             <InputWithLabel
               label='Type:'
               placeholder='Enter node type...'
               ref={typeInputRef}
             />
+
+            <List>
+              
+            </List>
+
             <Button
-              startDecorator='💾'
+              variant='contained'
+              startIcon='💾'
               onClick={handleSaveClicked}
             >
               Save
@@ -103,7 +111,8 @@ const InputWithLabel = forwardRef((
   return (
     <Box>
       <Typography level='body-xs'>{label}</Typography>
-      <Input size='sm'
+      <TextField size='small'
+        fullWidth
         defaultValue={defaultValue}
         placeholder={placeholder}
         ref={ref}
@@ -123,9 +132,11 @@ const TextAreaWithLabel = forwardRef((
   return (
     <Box>
       <Typography level='body-xs'>{label}</Typography>
-      <Textarea size='sm'
-        minRows={2}
-        maxRows={4}
+      <TextField size='small'
+        fullWidth
+        multiline
+        minRows='2'
+        maxRows='4'
         defaultValue={defaultValue}
         placeholder={placeholder}
         ref={ref}

@@ -1,4 +1,4 @@
-import { Box } from "@mui/joy";
+import { Box } from "@mui/material";
 
 const AppVersioning = () => {
   const versionNumber = '0.1 (alpha)';

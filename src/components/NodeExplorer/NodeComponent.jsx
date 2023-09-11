@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionGroup, AccordionSummary, Box, Checkbox, Divider, IconButton, Tooltip, Typography } from "@mui/joy";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Checkbox, Tooltip, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { deselectNode, setSelectedNode } from "../../reducers/campaignReducer";
 import { useMemo, useState } from "react";
@@ -20,7 +20,7 @@ const NodeComponent = ({
     [selectedNodeId]
   );
 
-  const handleClickedEdit = (event) => {
+  const handleSelectNode = (event) => {
     if (event.target.checked) {
       dispatch(setSelectedNode(node));
     } else {
@@ -37,7 +37,6 @@ const NodeComponent = ({
   };
 
   return (
-    <AccordionGroup size="sm" sx={{ marginTop: '4px' }}>
       <Accordion defaultExpanded
         expanded={isExpanded}
         className='node-accordion'
@@ -54,9 +53,9 @@ const NodeComponent = ({
             <Tooltip disableInteractive
               title={isSelected ? 'Deselect node' : 'Select node'}
             >
-              <Checkbox size="sm"
+              <Checkbox size="small"
                 checked={isSelected}
-                onChange={handleClickedEdit}
+                onChange={handleSelectNode}
                 className='selection-checkbox'
                 sx={isSelected
                   ? {
@@ -123,7 +122,6 @@ const NodeComponent = ({
           }
         </AccordionDetails>
       </Accordion>
-    </AccordionGroup>
   );
 };
 
