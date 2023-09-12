@@ -7,12 +7,17 @@ const NodeExplorer = () => {
   const nodes = useSelector(state => state.campaign.data.nodes);
 
   return (
-    <Box>
+    <Box display='grid' 
+      gridTemplateRows='auto 1px 1fr'
+      gridTemplateColumns='1fr'
+      height='100%'
+      minWidth='0'
+    >
       <Typography level='h4'>Node Explorer</Typography>
 
       <Divider />
 
-      <Box paddingY='20px'>
+      <Box paddingY='10px'>
         {nodes?.Root?.childrenIds && nodes.Root.childrenIds.map(childId => (
           <NodeComponent key={childId} node={nodes[childId]} />
         ))}

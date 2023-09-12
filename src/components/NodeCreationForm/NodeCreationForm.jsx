@@ -15,26 +15,28 @@ const NodeCreationForm = () => {
   useEffect(
     () => {
       if (nameInputRef.current) {
-        nameInputRef.current.childNodes[0].value = selectedNode.name;
+        nameInputRef.current.childNodes[0].childNodes[0].value = selectedNode.name;
       }
 
       if (descriptionInputRef.current) {
-        descriptionInputRef.current.childNodes[0].value = selectedNode.description;
+        descriptionInputRef.current.childNodes[0].childNodes[0].value = selectedNode.description;
       }
 
       if (typeInputRef.current) {
-        typeInputRef.current.childNodes[0].value = selectedNode.type;
+        typeInputRef.current.childNodes[0].childNodes[0].value = selectedNode.type;
       }
     },
-    [selectedNode.id]
+    [
+      selectedNode.id
+    ]
   );
 
   const handleSaveClicked = () => {
     const replacementNode = { ...selectedNode };
 
-    replacementNode.name = nameInputRef.current.childNodes[0].value;
-    replacementNode.description = descriptionInputRef.current.childNodes[0].value;
-    replacementNode.type = typeInputRef.current.childNodes[0].value;
+    replacementNode.name = nameInputRef.current.childNodes[0].childNodes[0].value;
+    replacementNode.description = descriptionInputRef.current.childNodes[0].childNodes[0].value;
+    replacementNode.type = typeInputRef.current.childNodes[0].childNodes[0].value;
 
     dispatch(updateNode(replacementNode));
   };
@@ -80,7 +82,7 @@ const NodeCreationForm = () => {
             />
 
             <List>
-              
+
             </List>
 
             <Button

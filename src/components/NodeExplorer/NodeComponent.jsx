@@ -2,6 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Checkbox, Tooltip, 
 import { useDispatch, useSelector } from "react-redux";
 import { deselectNode, setSelectedNode } from "../../reducers/campaignReducer";
 import { useMemo, useState } from "react";
+import { ExpandMore } from "@mui/icons-material";
 
 const indentation = 16;
 
@@ -79,17 +80,14 @@ const NodeComponent = ({
                   onClick={() => setIsExpanded(state => !state)}
                   style={isExpanded
                     ? {
-                      transform: 'rotate(30deg)',
-                      top: '-3px',
-                      left: '0px',
+                      top: '2px'
                     }
                     : {
-                      transform: 'rotate(-150deg)',
-                      top: '3px',
-                      left: '2px',
+                      transform: 'rotate(180deg)',
+                      top: '-2px'
                     }}
                 >
-                  🍕
+                  <ExpandMore />
                 </span>
               </Tooltip>
 

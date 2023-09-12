@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Divider, IconButton, Input, Stack, Tab, Tabs, TextField, Tooltip, Typography } from '@mui/material';
-import { AutoStories, HistoryEdu, HomeOutlined, Settings, TipsAndUpdates } from '@mui/icons-material';
+import { Add, AutoStories, HistoryEdu, HomeOutlined, Settings, TipsAndUpdates } from '@mui/icons-material';
 import { addNode, setCampaign } from '../../reducers/campaignReducer';
 import { saveCampaign } from '../../services/fileService';
 import NodeExplorer from '../../components/NodeExplorer/NodeExplorer';
@@ -150,7 +150,7 @@ const CreatorMode = () => {
                     variant='soft'
                     onClick={handleClickedAddNewNode}
                   >
-                    ➕
+                   <Add /> 
                   </IconButton>
                 </Tooltip>
               </Stack>
