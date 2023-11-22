@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import ExpandMore from "@mui/icons-/ExpandMore";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import { deselectNode, setSelectedNode } from "../../reducers/campaignReducer";
 
 const indentation = 16;

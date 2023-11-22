@@ -3,7 +3,7 @@ import { constants } from "../Constants/apiAddress";
 import axios from 'axios';
 
 const initialState = {
-    classes: {},
+    classes: null,
     specificClass: null,
     isLoading: false,
     error: null
