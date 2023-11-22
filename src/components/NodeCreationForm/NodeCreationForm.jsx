@@ -8,8 +8,8 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { updateNode } from '../../reducers/campaignReducer';
-import SelectComponent from '../../Common/Select.cmp';
-import {getAllClasses} from '../../reducers/classReducer';
+import SelectComponent from '../../Common/Select';
+import { getAllClasses } from '../../reducers/classReducer';
 
 const NodeCreationForm = () => {
   const selectedNode = useSelector(state => state.campaign.selectedNode);
@@ -18,7 +18,7 @@ const NodeCreationForm = () => {
   const descriptionInputRef = useRef(null);
   const typeInputRef = useRef(null);
   const classes = useSelector(state => state.classes);
-  const [selectedClass , setSelectedClass] = useState();
+  const [selectedClass, setSelectedClass] = useState();
 
   const dispatch = useDispatch();
 
@@ -51,18 +51,18 @@ const NodeCreationForm = () => {
     dispatch(updateNode(replacementNode));
   };
 
-  
+
   useEffect(() => {
     dispatch(getAllClasses())
   });
 
-   /**
-     * Retrieves the selected value from the SelectedComponent
-     * @param {string} value 
-     */
-   const handleSelect = (value) => {
+  /**
+    * Retrieves the selected value from the SelectedComponent
+    * @param {string} value 
+    */
+  const handleSelect = (value) => {
     setSelectedClass(value);
-}
+  }
 
   return (
     <Box>
@@ -105,10 +105,10 @@ const NodeCreationForm = () => {
             />
 
             <List>
-            {
-              classes &&
-            <SelectComponent menuItems={classes.classes} label={"Classes"} onSelect={handleSelect}/>
-            }
+              {
+                classes &&
+                <SelectComponent menuItems={classes.classes} label={"Classes"} onSelect={handleSelect} />
+              }
             </List>
 
             <Button

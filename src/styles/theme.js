@@ -1,6 +1,7 @@
-import createTheme from "@mui/material/styles/createTheme";
+import { createTheme } from "@mui/material";
 
 // Utilized https://maketintsandshades.com/ and 
+
 // grabbed every other color from white toward black
 export const theme = createTheme({
   palette: {

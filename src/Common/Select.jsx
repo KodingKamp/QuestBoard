@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Box,Select, FormControl, MenuItem, InputLabel  } from '@mui/material';
+import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 
 const SelectComponent = ({ menuItems, label, onSelect }) => {
   const [selectedItem, setSelectedItem] = useState();
