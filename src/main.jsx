@@ -6,6 +6,7 @@ import store from './store.js';
 import { CreatorMode, LandingPage, GameMode } from './Pages';
 import { theme } from './styles/theme.js';
 import './index.scss';
+import { AppModal } from './Common/appModal.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
+      {/* TODO : fix app Modal on global level
+      <AppModal /> */}
     </ThemeProvider>
   </Provider>
 );
