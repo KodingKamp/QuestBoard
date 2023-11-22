@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import createTheme from "@mui/material/styles/createTheme";
 
 // Utilized https://maketintsandshades.com/ and 
 // grabbed every other color from white toward black

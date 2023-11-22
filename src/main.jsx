@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
+import ThemeProvider from '@mui/material/styles/ThemeProvider.js';
 import store from './store.js';
 import { CreatorMode, LandingPage, GameMode } from './Pages';
 import { theme } from './styles/theme.js';
