@@ -17,7 +17,7 @@ const NodeCreationForm = () => {
   const nameInputRef = useRef(null);
   const descriptionInputRef = useRef(null);
   const typeInputRef = useRef(null);
-  const classes = useSelector(state => state.classes);
+  const classesState = useSelector(state => state.classes);
   const [selectedClass, setSelectedClass] = useState();
 
   const dispatch = useDispatch();
@@ -51,10 +51,18 @@ const NodeCreationForm = () => {
     dispatch(updateNode(replacementNode));
   };
 
+  useEffect(
+    // Initial fetch of classes.
+    () => {
+      // Do nothing if we've already fetched for classes.
+      if (classesState.isLoading || classesState.results !== null) {
+        return;
+      }
 
-  useEffect(() => {
-    dispatch(getAllClasses())
-  });
+      dispatch(getAllClasses());
+    },
+    [classesState, dispatch]
+  );
 
   /**
     * Retrieves the selected value from the SelectedComponent
@@ -106,8 +114,8 @@ const NodeCreationForm = () => {
 
             <List>
               {
-                classes &&
-                <SelectComponent menuItems={classes.classes} label={"Classes"} onSelect={handleSelect} />
+                classesState.results &&
+                <SelectComponent menuItems={classesState.results} label={"Classes"} onSelect={handleSelect} />
               }
             </List>
 

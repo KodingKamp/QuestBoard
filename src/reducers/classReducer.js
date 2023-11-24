@@ -3,7 +3,7 @@ import { constants } from "../Constants/apiAddress";
 import axios from 'axios';
 
 const initialState = {
-    classes: null,
+    results: null,
     specificClass: null,
     isLoading: false,
     error: null
@@ -30,11 +30,12 @@ export const classSlice = createSlice({
         builder
           .addCase(getAllClasses.pending, (state) => {
             state.isLoading = true;
+            state.results = null;
             state.error = null;
           })
           .addCase(getAllClasses.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.classes = action.payload;
+            state.results = action.payload;
           })
           .addCase(getAllClasses.rejected, (state, action) => {
             state.isLoading = false;
