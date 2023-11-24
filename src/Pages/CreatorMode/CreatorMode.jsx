@@ -5,9 +5,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/icons-material/Menu';
 import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -32,6 +33,7 @@ const CreatorMode = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Redirect to landing page if stateless
   useEffect(() => {
     if (!campaignDataState) {
       navigate('/');
@@ -99,43 +101,8 @@ const CreatorMode = () => {
             <Box
               className='icon-container-left icon-container'
             >
-              <Tabs value={leftViewState}
-                onChange={(event, value) => setLeftViewState(value)}
-                orientation='vertical'
-                className='icon-bar-left icon-bar'
-              >
-                <Tab className='tab-icon'
-                  label={
-                    <Tooltip title='Node Explorer' disableInteractive>
-                      <AutoStories />
-                    </Tooltip>
-                  }
-                />
-                <Tab className='tab-icon'
-                  label={
-                    <Tooltip title='Quests' disableInteractive>
-                      <HistoryEdu />
-                    </Tooltip>
-                  }
-                />
-                <Tab className='tab-icon'
-                  label={
-                    <Tooltip title='Intel' disableInteractive>
-                      <TipsAndUpdates />
-                    </Tooltip>
-                  }
-                />
-                <Tab className='tab-icon'
-                  label={
-                    <Tooltip title='Settings' disableInteractive>
-                      <Settings />
-                    </Tooltip>
-                  }
-                />
-              </Tabs>
-
               <Box
-                className='content-container content-container-left'
+                className=''
               >
                 {leftViewState === 0 &&
                   <NodeExplorer />
@@ -150,6 +117,54 @@ const CreatorMode = () => {
                   <span>Settings</span>
                 }
               </Box>
+              
+              <SpeedDial
+                className='left-menu-button'
+                ariaLabel='Node Menu'
+                icon={<Menu />}
+                direction='down'
+              >
+                <SpeedDialAction
+                  tooltipTitle='Node Explorer'
+                  tooltipOpen
+                  tooltipPlacement='right'
+                  icon={<AutoStories />}
+                  FabProps={{
+                    variant: 'extended'
+                  }}
+                  onClick={() => setLeftViewState(0)}
+                  />
+                <SpeedDialAction
+                  tooltipTitle='Quests'
+                  tooltipOpen
+                  tooltipPlacement='right'
+                  icon={<HistoryEdu />}
+                  FabProps={{
+                    variant: 'extended'
+                  }}
+                  onClick={() => setLeftViewState(1)}
+                  />
+                <SpeedDialAction
+                  tooltipTitle='Intel'
+                  tooltipOpen
+                  tooltipPlacement='right'
+                  icon={<TipsAndUpdates />}
+                  FabProps={{
+                    variant: 'extended'
+                  }}
+                  onClick={() => setLeftViewState(2)}
+                  />
+                <SpeedDialAction
+                  tooltipTitle='Settings'
+                  tooltipOpen
+                  tooltipPlacement='right'
+                  icon={<Settings />}
+                  FabProps={{
+                    variant: 'extended'
+                  }}
+                  onClick={() => setLeftViewState(3)}
+                />
+              </SpeedDial>
             </Box>
 
             <Box className='icon-container-right icon-container'
@@ -164,7 +179,7 @@ const CreatorMode = () => {
                     variant='soft'
                     onClick={handleClickedAddNewNode}
                   >
-                   <Add /> 
+                    <Add />
                   </IconButton>
                 </Tooltip>
               </Stack>

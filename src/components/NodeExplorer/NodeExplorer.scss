@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .node-accordion {
   &.MuiAccordion-root {
     box-shadow: none;
@@ -49,5 +51,21 @@
 
   .MuiAccordionDetails-content {
     padding-bottom: 0;
+  }
+}
+
+.section-container {
+  border-width: 3px;
+  border-color: $secondary;
+  border-style: solid;
+  border-radius: 10px;
+  
+
+  .section-title {
+    padding: 10px;
+  }
+
+  .section-body {
+    padding: 10px;
   }
 }
