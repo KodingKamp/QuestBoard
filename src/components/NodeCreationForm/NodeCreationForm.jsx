@@ -1,12 +1,14 @@
 import { forwardRef, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Button,
+  Divider,
+  List,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { updateNode } from '../../reducers/campaignReducer';
 import SelectComponent from '../../Common/Select';
 import { getAllClasses } from '../../reducers/classReducer';
@@ -115,7 +117,11 @@ const NodeCreationForm = () => {
             <List>
               {
                 classesState.results &&
-                <SelectComponent menuItems={classesState.results} label={"Classes"} onSelect={handleSelect} />
+                <SelectComponent
+                  menuItems={classesState.results}
+                  label={"(Optional) Assign specific class"}
+                  onSelect={handleSelect}
+                />
               }
             </List>
 
@@ -152,6 +158,7 @@ const InputWithLabel = forwardRef((
         defaultValue={defaultValue}
         placeholder={placeholder}
         ref={ref}
+        color='secondary'
       />
     </Box>
   );
@@ -176,6 +183,7 @@ const TextAreaWithLabel = forwardRef((
         defaultValue={defaultValue}
         placeholder={placeholder}
         ref={ref}
+        color='secondary'
       />
     </Box>
   );

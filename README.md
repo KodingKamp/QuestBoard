@@ -7,10 +7,10 @@ Additional documentation for Vite can be found at the following links:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-# JoyUI
+# MaterialUI
 
-MUI's JoyUI framework is used for UI components.
-- Documentation can be found here: https://mui.com/joy-ui/getting-started/
+MUI framework is used for UI components.
+- Documentation can be found here: https://mui.com/material-ui/getting-started/
 
 # React Redux-toolkit
 

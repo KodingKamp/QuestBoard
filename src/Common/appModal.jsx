@@ -1,7 +1,9 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
+import { 
+    Box, 
+    Button, 
+    Modal, 
+    Typography 
+} from "@mui/material";
 
 export const AppModal = () => {
     const dispatch = useDispatch();
@@ -24,14 +26,14 @@ export const AppModal = () => {
             <Box
                 component='div'>
                 <Box p={2} borderBottom={1} borderColor='border.light'>
-                    <Typography >
+                    <Typography>
                         {components.header ? components.header : 'Confirmation Title'}
                     </Typography>
                 </Box>
 
                 <Box p={2} borderBottom={1} borderColor='border.light' >
                     {components.body ? components.body :
-                        <Typography >
+                        <Typography>
                             Are you sure
                         </Typography>
                     }

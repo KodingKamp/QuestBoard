@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Typography,
+} from '@mui/material';
 import NodeComponent from './NodeComponent';
 import './NodeExplorer.scss';
 

@@ -1,21 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/icons-material/Menu';
-import Stack from '@mui/material/Stack';
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  Stack,
+  SpeedDial,
+  SpeedDialAction,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import AutoStories from '@mui/icons-material/AutoStories';
 import HistoryEdu from '@mui/icons-material/HistoryEdu';
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
+import Menu from '@mui/icons-material/Menu';
 import Settings from '@mui/icons-material/Settings';
 import TipsAndUpdates from '@mui/icons-material/TipsAndUpdates';
 import { addNode, setCampaign } from '../../reducers/campaignReducer';
@@ -77,7 +79,7 @@ const CreatorMode = () => {
           <Box display='flex' justifyContent='space-between' className='page-header'>
             <Box display='flex' gap='30px' alignItems='center'>
               <Link to='/'>
-                <IconButton size='large' className='home-btn' color='primary'>
+                <IconButton size='large' className='home-btn' sx={{ color: 'white' }}>
                   <HomeOutlined />
                 </IconButton>
               </Link>
@@ -89,7 +91,7 @@ const CreatorMode = () => {
                 placeholder="Enter name of campaign..."
                 ref={campaignNameRef}
               />
-              <Button onClick={handleClickedSaveCampaign} variant='contained'>
+              <Button onClick={handleClickedSaveCampaign} variant='outlined'>
                 Export
               </Button>
             </Box>
@@ -117,7 +119,7 @@ const CreatorMode = () => {
                   <span>Settings</span>
                 }
               </Box>
-              
+
               <SpeedDial
                 className='left-menu-button'
                 ariaLabel='Node Menu'
@@ -133,7 +135,7 @@ const CreatorMode = () => {
                     variant: 'extended'
                   }}
                   onClick={() => setLeftViewState(0)}
-                  />
+                />
                 <SpeedDialAction
                   tooltipTitle='Quests'
                   tooltipOpen
@@ -143,7 +145,7 @@ const CreatorMode = () => {
                     variant: 'extended'
                   }}
                   onClick={() => setLeftViewState(1)}
-                  />
+                />
                 <SpeedDialAction
                   tooltipTitle='Intel'
                   tooltipOpen
@@ -153,7 +155,7 @@ const CreatorMode = () => {
                     variant: 'extended'
                   }}
                   onClick={() => setLeftViewState(2)}
-                  />
+                />
                 <SpeedDialAction
                   tooltipTitle='Settings'
                   tooltipOpen

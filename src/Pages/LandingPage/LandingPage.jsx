@@ -2,10 +2,12 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoadedCampaign, setNewCampaign } from '../../reducers/campaignReducer';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Button,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { loadFile } from '../../services/fileService';
 import AppVersioning from '../../components/AppVersioning/AppVersioning';
 import './LandingPage.scss';
@@ -68,7 +70,7 @@ const LandingPage = () => {
         <Button
           onClick={() => loadCampaignRef.current.click()}
           variant='outlined'
-          >
+        >
           LOAD & EDIT
         </Button>
         <Button

@@ -19,6 +19,20 @@ export const theme = createTheme({
       800: '#591670',
       900: '#3C0F4B',
     },
+    secondary: {
+      main: '#ebb734',
+      // Yellow
+      50: '#FFFFFF',
+      100: '#fbf1d6',
+      200: '#f7e2ae',
+      300: '#f3d485',
+      400: '#f1cd71',
+      500: '#efc55d',
+      600: '#ebb734', // Main color
+      700: '#bc922a',
+      800: '#8d6e1f',
+      900: '#5e4915',
+    },
     text: {
       primary: "#F1F1F1",
       secondary: "#999"

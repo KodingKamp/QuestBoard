@@ -1,13 +1,15 @@
 import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Checkbox,
+  Tooltip,
+  Typography
+} from "@mui/material";
+import { ExpandMore } from "@mui/icons-material";
 import { deselectNode, setSelectedNode } from "../../reducers/campaignReducer";
 
 const indentation = 16;

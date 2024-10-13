@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
+import {
+  Box,
+  Select,
+  FormControl,
+  InputLabel,
+  MenuItem,
+} from '@mui/material';
 
 const SelectComponent = ({ menuItems, label, onSelect }) => {
   const [selectedItem, setSelectedItem] = useState();
@@ -19,16 +21,20 @@ const SelectComponent = ({ menuItems, label, onSelect }) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-label">{label}</InputLabel>
+        <InputLabel id="select-label"
+          color='secondary'>
+          {label}
+        </InputLabel>
         <Select
           labelId="select-label"
           id="select-dropdown"
           value={selectedItem}
           label="select-dropdown"
           onChange={handleChange}
+          color='secondary'
         >
           {menuItems.map((item, index) => (
-            <MenuItem sx={{color: 'black'}} key={index} value={item.name}>{item.name}</MenuItem>
+            <MenuItem sx={{ color: 'black' }} key={index} value={item.name}>{item.name}</MenuItem>
           ))}
         </Select>
       </FormControl>
